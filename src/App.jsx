@@ -10,7 +10,7 @@ const App = () =>{
   ])
 
 useEffect(() =>{
-  axios.get('https://expensetracker-w3h4.onrender.com')
+  axios.get('https://expensetracker-w3h4.onrender.com/add-entry')
   .then(res => {
     console.log(res.data)
     setExpenses(res.data)
@@ -23,6 +23,7 @@ useEffect(() =>{
   const addExpense = (title,amount) =>{
     const nextId = expenses[expenses.length-1].id+1
     setExpenses([...expenses, { id:nextId, title:title, amount:amount}])
+    axios.post('https://expensetracker-w3h4.onrender.com/add-entry', ({title:title, amount:amount}))
   }
 
   const deleteExpense = (id)=>{
